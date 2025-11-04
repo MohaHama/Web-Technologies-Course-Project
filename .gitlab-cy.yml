@@ -1,0 +1,149 @@
+stages:
+  - preparation
+  - index
+  - create
+  - show
+  - update
+  - delete
+
+default:
+  image: 
+    name: thorjorgin/webtech-ci:0.3
+    pull_policy: if-not-present
+  cache:
+      - key: 
+          files: 
+            - WebTech25_Assignment2/composer.lock
+        paths:
+          - WebTech25_Assignment2/vendor
+        policy: pull-push
+  artifacts:
+    paths:
+      - WebTech25_Assignment2/vendor/
+    expire_in: 72h
+
+  before_script:
+    - cd ./WebTech25_Assignment2/
+    - export APP_PATH="$(pwd)"
+    - composer install
+    - php artisan dusk:chrome-driver
+    - export APP_URL=http://127.0.0.1:8000
+    - php artisan serve > /dev/null &
+
+
+
+restore:
+  stage: preparation
+  script:
+    # - npm install
+    - cp .env.example .env
+    - php artisan key:generate
+    - php artisan migrate
+
+
+
+"When not logged in, the header should show a Sign Up link":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter testViewRegistrationLink
+
+"When not logged in, the header should show a Log In link":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter testViewLoginLink
+
+"When logged in, the header should show a Log out link":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter testViewLogoutLink
+
+"When logged in, the header should show the name of the user who is logged in":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter testViewName
+
+"The link to the Log In page should work":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter testLoginLink
+
+"The log in page should show email and password fields in the form and the form should have propper method":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter testLoginForm
+
+"The user should be authenticated when logging in using propper credentials":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter testLogin
+
+"The link to the Log Out button should work":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter testLogoutLink
+
+"When clicking the log out button the user should be logged out and visit the system as guest":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter testLogout
+
+"The registration link should work":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter testRegistrationLink
+
+"When clicking the Sign Up link the user should see a form with propper methods containing propper fields for name, email, and password":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter testRegistrationForm
+
+"When the registration form is filled propperly and the Submit button is clicked the user should be created, signed in, and redirected to the index page":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter testRegistrationLogin
+
+"":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter 
+
+"":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter 
+
+"":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter 
+
+"":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter 
+
+"":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter 
+
+    
+
+
