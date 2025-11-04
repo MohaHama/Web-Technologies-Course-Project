@@ -114,36 +114,6 @@ restore:
   script:
     - php artisan dusk --filter testRegistrationLogin
 
-"":
-  stage: index
-  needs: [restore]
-  script:
-    - php artisan dusk --filter 
-
-"":
-  stage: index
-  needs: [restore]
-  script:
-    - php artisan dusk --filter 
-
-"":
-  stage: index
-  needs: [restore]
-  script:
-    - php artisan dusk --filter 
-
-"":
-  stage: index
-  needs: [restore]
-  script:
-    - php artisan dusk --filter 
-
-"":
-  stage: index
-  needs: [restore]
-  script:
-    - php artisan dusk --filter 
-
     
 
 
