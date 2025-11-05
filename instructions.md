@@ -39,8 +39,7 @@ The questions are:
 * Question 2: Performance, Scalability, & Greenability
 * Question 3: REST
 
-
-
+**Important!**
 Similar to the previous assignment, we recommend that you work on the code first and then answer the questions.
 
 
@@ -107,6 +106,8 @@ The names of these fields should be: email and password.
 
 When the submit button is clicked, an existing user from the database is authenticated on the website.
 The user is redirected to the index page, and their name is displayed in the header.
+
+If the email or password is incorrect, the user is redirected to the same Log In page, but in the form a new message appears: *Incorrect email or password*
 
 
 ### Task 3: Log out

@@ -22,7 +22,8 @@ class LoginTest extends DuskTestCase
     public function testLoginLink(): void
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/')
+            $browser->logout()
+                    ->visit('/')
                     ->assertSeeLink('Log In')
                     ->clickLink('Log In');
         });
@@ -31,7 +32,8 @@ class LoginTest extends DuskTestCase
     public function testLoginForm(): void 
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/')
+            $browser->logout()
+                    ->visit('/')
                     ->clickLink('Log In')
                     ->assertInputPresent('email')
                     ->assertInputPresent('password');
@@ -47,13 +49,29 @@ class LoginTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $user = User::first();
-            $browser->visit('/')
+            $browser->logout()
+                    ->visit('/')
                     ->clickLink('Log In')
                     ->type('email', $user->email)
                     ->type('password', 'password')
                     ->press('Submit')
                     ->assertPathIs('/')
                     ->assertAuthenticated();
+        });
+    }
+
+    public function testIncorrectLogin(): void 
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->logout()
+                    ->visit('/')
+                    ->clickLink('Log In')
+                    ->assertDontSee("Incorrect email or password")
+                    ->type('email', "incorrect@incorrect.com")
+                    ->type('password', 'incorrect')
+                    ->press('Submit')
+                    ->assertSee("Incorrect email or password")
+                    ->assertGuest();
         });
     }
 }

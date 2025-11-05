@@ -2,7 +2,7 @@
 
 namespace Tests\Browser;
 
-use Illuminate\Foundation\Testing\DatabaseTruncation;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
@@ -11,13 +11,7 @@ use PHPUnit\Framework\Assert as PHPUnit;
 
 class PersonalizationTest extends DuskTestCase
 {
-
-    use DatabaseTruncation;
-
-    protected function setUp(): void{
-        parent::setUp();
-        $this->artisan('db:seed');
-    }
+    use DatabaseMigrations;
 
     public function testResourceRegistration(): void
     {
@@ -34,12 +28,14 @@ class PersonalizationTest extends DuskTestCase
                     ->assertPathIs('/1')
                     ->assertSee('Resource added successfully')
                     ->visit('/1')
-                    ->assertDontSee('Resource added successfully');
+                    ->assertDontSee('Resource added successfully')
+                    ;
         });
     }
 
-    public function testResourceRegistrationBlockToGuest(): void
+    public function testRegistrationBlockToGuest(): void
     {
+
         $this->browse(function (Browser $browser) {
             $browser->logout()
                     ->visit('/1')
@@ -50,6 +46,8 @@ class PersonalizationTest extends DuskTestCase
                     ->visit('/1');
             $form = $browser->element('@resource-registration');
             $url = $form->getAttribute("action");
+            $browser->logout()
+                    ;
 
             $this->withoutMiddleware('Illuminate\Foundation\Http\Middleware\ValidateCsrfToken');
             $this->withoutExceptionHandling();
@@ -59,8 +57,9 @@ class PersonalizationTest extends DuskTestCase
         });
     }
 
-    public function testResourceRegistrationLink(): void
+    public function testRegistrationLinkAuth(): void
     {
+
         $this->browse(function (Browser $browser) {
             
             $user = User::first();
@@ -72,13 +71,15 @@ class PersonalizationTest extends DuskTestCase
                     ->visit('/2')
                     ->press('Add Resource')
                     ->visit('/3')
-                    ->press('Add Resource');
+                    ->press('Add Resource')
+                    ;
 
             // Tests
             $browser->loginAs($user)
                     ->visit('/')
                     ->assertSeeLink('Registered Resources')
-                    ->clickLink('Registered Resources');
+                    ->clickLink('Registered Resources')
+                    ;
 
             foreach($user->registeredResources() as $resource) {
                 $browser->assertSee($resource->name);
@@ -86,12 +87,13 @@ class PersonalizationTest extends DuskTestCase
         });
     }
 
-    public function testResourceRegistrationLinkBlockToGuest(): void
+    public function testRegistrationLinkBlockToGuest(): void
     {
         $this->browse(function (Browser $browser) {
             $browser->logout()
                     ->visit('/')
-                    ->assertDontSeeLink('Registered Resources');
+                    ->assertDontSeeLink('Registered Resources')
+                    ;
             
             $this->withoutExceptionHandling();
             $this->expectException('Illuminate\Auth\AuthenticationException');
@@ -101,38 +103,51 @@ class PersonalizationTest extends DuskTestCase
         });
     }
 
-    public function testResourceRegistrationMultipleUser(): void
+    public function testRegistrationMultipleUser(): void
     {
         $this->browse(function (Browser $browser) {
             //Prepare DB
-            $user1 = User::find(1);
-            $browser->loginAs($user1)
+            $user = User::find(1);
+            $browser->loginAs($user)
                     ->visit('/1')
                     ->press('Add Resource')
                     ->visit('/2')
                     ->press('Add Resource');
 
-            $user2 = User::find(2);
-            $browser->loginAs($user2)
+            // Tests
+            $resources = $user->registeredResources();
+            $browser->visit('/')
+                    ->assertSeeLink('Registered Resources')
+                    ->clickLink('Registered Resources')
+                    ;
+            foreach($resources as $resource) {
+                $browser->assertSee($resource->name);
+            }
+          
+        });
+
+        $this->browse(function (Browser $browser) {
+            //Prepare DB
+            $user = User::find(2);
+            $browser->loginAs($user)
                     ->visit('/3')
                     ->press('Add Resource');
 
             // Tests
-            $browser->loginAs($user1)
-                    ->visit('/')
+            $resources = $user->registeredResources();
+            $browser->visit('/')
                     ->assertSeeLink('Registered Resources')
-                    ->clickLink('Registered Resources');
-            foreach($user1->registeredResources() as $resource) {
+                    ->clickLink('Registered Resources')
+                    ;
+            foreach($resources as $resource) {
                 $browser->assertSee($resource->name);
             }
-
-            $browser->loginAs($user2)
-                    ->visit('/')
-                    ->assertSeeLink('Registered Resources')
-                    ->clickLink('Registered Resources');
-            foreach($user2->registeredResources() as $resource) {
-                $browser->assertSee($resource->name);
-            }
+           
         });
+    }
+
+    protected function afterRefreshingDatabase(): void
+    {
+        $this->artisan('db:seed');
     }
 }
