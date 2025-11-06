@@ -114,6 +114,58 @@ restore:
   script:
     - php artisan dusk --filter testRegistrationLogin
 
-    
+"Recourses added message should be shown when creating new recourse but disapear on reload":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter testResourceRegistration
+
+"A guest should not be able to create a new recourse":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter testRegistrationBlockToGuest
+
+"A created recourse should be correctly assosiated with the logged in user on creation":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter testRegistrationLinkAuth
+
+"Create recourse link should not be shown to guests":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter testRegistrationLinkBlockToGuest
+
+"Users can see an overview of their created recourses and it shows created recourses from multiple":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter testRegistrationMultipleUser
+
+"Only guests can see the registration page and use POST to store route, others get redirexted to index page":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter testRegistrationAction
+
+"Only guests can see the login page and use POST to store route, others get redirexted to index page":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter testLoginAction
+
+"It throws an AuthenticationException when attempting to log out as a guest":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter testLogoutActionWithException
+
+"Logged in users get logged out when POSTing to log out route, guests get redirected to the login page":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter testLogoutAction
 
 
