@@ -84,6 +84,12 @@ restore:
   script:
     - php artisan dusk --filter testLogin
 
+"It should fail to authenticate user and tell the user that email or password is incorrect when using wrong credentials":
+  stage: index
+  needs: [restore]
+  script:
+    - php artisan dusk --filter testIncorrectLogin
+
 "The link to the Log Out button should work":
   stage: index
   needs: [restore]
