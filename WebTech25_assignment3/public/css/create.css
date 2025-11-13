@@ -1,0 +1,98 @@
+.btn {
+    border: 2px;
+    border-color: rgb(44, 44, 167);
+    text-align: center;
+    background-color: rgb(44, 44, 167);
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 8px 13px;
+    border-bottom-style: solid;
+    box-shadow: 0 4px 0 #666;
+    color: white;
+}
+
+.btn:hover {
+    background-color: rgb(89, 89, 174);
+    transform: translateY(2px);
+    box-shadow: 0 2.5px 0 #666;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container h1,
+h2 {
+    color: rgb(44, 44, 167);
+}
+
+#eventForm input {
+    color: rgb(44, 44, 167);
+}
+
+td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* add button */
+#addBtn {
+    background-color: rgb(54, 173, 21);
+    border-color: rgb(54, 173, 21);
+}
+
+#addBtn:hover {
+    background-color: rgb(124, 218, 98);
+    transform: translateY(2px);
+    box-shadow: 0 2.5px 0 #666;
+}
+
+/* Read button */
+#readBtn {
+    background-color: rgb(163, 155, 3);
+    border-color: rgb(163, 155, 3);
+    margin-bottom: 1rem;
+}
+
+#readBtn:hover {
+    background-color: rgb(193, 189, 106);
+    transform: translateY(2px);
+    box-shadow: 0 2.5px 0 #666;
+}
+
+/* delete Button */
+#deleteBtn {
+    background-color: red;
+    border-color: red;
+}
+
+#deleteBtn:hover {
+    background-color: rgb(234, 95, 95);
+    transform: translateY(2px);
+    box-shadow: 0 2.5px 0 #666;
+}
+
+#eventForm {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 20px 0;
+}
+
+#eventForm input {
+    padding: 6px 10px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    font-size: 14px;
+}

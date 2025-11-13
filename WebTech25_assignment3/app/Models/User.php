@@ -23,6 +23,12 @@ class User extends Authenticatable
         'password',
     ];
 
+    //*********** Method to tell that users HAS MANY events **********
+    public function events()
+    {
+        return $this->hasMany(Event::class, 'host_id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

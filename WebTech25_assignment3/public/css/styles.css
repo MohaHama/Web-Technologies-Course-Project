@@ -1,0 +1,280 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    padding-top: 4rem; /* gives space for main so the nav doesnt overlap */
+    flex: 1; /* Pushes that goddamn footer down to the bottom */
+}
+
+nav,
+.nav-links {
+    display: flex;
+}
+
+nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 4rem;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom-style: solid;
+    border-color: rgb(44, 44, 167);
+    border-width: thin;
+    background: white;
+    z-index: 1000;
+}
+
+.nav-links {
+    gap: 2rem;
+    list-style: none;
+    font-size: 1rem;
+}
+
+#desktop-nav a {
+    color: rgb(44, 44, 167);
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+#desktop-nav a:hover {
+    background-color: rgb(44, 44, 167);
+    color: white;
+}
+
+.borderLink {
+    border-style: solid;
+}
+
+.logo {
+    font-size: 2rem;
+    color: rgb(44, 44, 167);
+    font-weight: 800;
+}
+
+.logo:hover {
+    cursor: default;
+}
+
+/* FrontPage */
+#frontpageContext {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding: 4rem 6rem;
+}
+
+#frontpage-text {
+    max-width: 50%;
+}
+
+#frontpage-text ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#WelcomeTitle {
+    color: rgb(44, 44, 167);
+    font-size: 3.5rem;
+    text-align: left;
+}
+
+#frontpage-text p {
+    color: rgb(44, 44, 167);
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.listIcon {
+    width: 1.5rem;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
+.welInfoP {
+    text-align: left;
+}
+
+#Welcome-button-frontpage {
+    border: 2px;
+    border-color: rgb(44, 44, 167);
+    text-align: center;
+    background-color: rgb(44, 44, 167);
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    padding: 13px 19px;
+    margin-top: 1.5rem;
+    border-bottom-style: solid;
+    box-shadow: 0 5px 0 #666;
+    color: white;
+}
+
+#Welcome-button-frontpage:hover {
+    background-color: rgb(89, 89, 174);
+    transform: translateY(2px);
+    box-shadow: 0 3px 0 #666;
+}
+
+#frontpagePIC {
+    max-width: 40%;
+    height: auto;
+}
+
+/* Event */
+#eventsHeader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0rem 0;
+    color: rgb(44, 44, 167);
+}
+
+#eventsHeader h1 {
+    font-size: 3rem;
+}
+
+#eventsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#eventsTable {
+    border-collapse: collapse;
+    border: 2px solid rgb(44, 44, 167);
+}
+
+#tableRowName {
+    background-color: rgb(44, 44, 167);
+}
+
+#eventsTable th {
+    font-size: 1.5rem;
+    color: white;
+    padding: 0.3rem 1rem;
+    white-space: nowrap;
+}
+
+#eventsTable td {
+    border: 1px solid rgb(44, 44, 167);
+    padding: 0.5rem 1rem;
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    border-top-style: solid;
+    height: 4rem;
+    background-color: rgb(44, 44, 167);
+    border-width: thin;
+    margin-top: 3rem;
+}
+
+#footerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    height: 100%;
+    align-items: center;
+}
+
+/* buttons */
+.btn {
+    border: 2px;
+    border-color: rgb(44, 44, 167);
+    text-align: center;
+    background-color: rgb(44, 44, 167);
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 8px 13px;
+    border-bottom-style: solid;
+    box-shadow: 0 4px 0 #666;
+    color: white;
+}
+/* delete Button */
+#deleteBtn {
+    background-color: red;
+    border-color: red;
+}
+
+#deleteBtn:hover {
+    background-color: rgb(234, 95, 95);
+    transform: translateY(2px);
+    box-shadow: 0 2.5px 0 #666;
+}
+
+/* Show button */
+#showBtn {
+    background-color: rgb(163, 155, 3);
+    border-color: rgb(163, 155, 3);
+}
+
+#showBtn:hover {
+    background-color: rgb(193, 189, 106);
+    transform: translateY(2px);
+    box-shadow: 0 2.5px 0 #666;
+}
+
+#updateBtn:hover {
+    background-color: rgb(90, 90, 182);
+    transform: translateY(2px);
+    box-shadow: 0 2.5px 0 #666;
+}
+
+.success-message {
+    color: green;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 600;
+    width: fit-content;
+}
+
+#username {
+    color: rgb(44, 44, 167);
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 20px;
+    vertical-align: middle;
+}
+
+#logOut-Btn {
+    color: rgb(44, 44, 167);
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: 1px solid rgb(44, 44, 167);
+    background: none;
+    font-size: 1rem;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+#logOut-Btn:hover {
+    background-color: rgb(44, 44, 167);
+    color: white;
+}
