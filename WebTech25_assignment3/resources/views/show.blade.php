@@ -36,7 +36,7 @@
                     <table id="eventsTable">
                         <!-- Table Row -->
                         <tr class="eventsTableRow" id="tableRowName">
-                            <th class="eventsTableHeader">ID</th>
+                            <th class="eventsTableHeader">Host</th>
                             <th class="eventsTableHeader">Host</th>
                             <th class="eventsTableHeader">Event</th>
                             <th class="eventsTableHeader">Description</th>
@@ -48,8 +48,7 @@
                             <th class="eventsTableHeader">Updated At</th>
                         </tr>
                         <tr id="TableDataRow">
-                            <td class="eventsTableData" id="tableHost">{{$event->id}}</td>
-                            <td class="eventsTableData" id="tableHost">{{$event->host}}</td>
+                            <td class="eventsTableData" id="tableHost">{{$event->host->name}}</td>
                             <td class="eventsTableData" id="tableEventName">{{$event->event}}</td>
                             <td class="eventsTableData" id="tableDescription">{{$event->description}}</td>
                             <td class="eventsTableData" id="tableLocation">{{$event->location}}</td>
