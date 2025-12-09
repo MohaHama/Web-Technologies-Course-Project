@@ -10,7 +10,7 @@
 
 <body>
     <div class="auth-container">
-        <form method="POST" action="{{ route('signUp.store') }}" class="auth-card">
+        <form method="POST" action="{{ route('registration.store') }}" class="auth-card">
             @csrf
             <h2>Register</h2>
             <!-- user infor for sign up -->

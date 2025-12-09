@@ -7,19 +7,19 @@ use App\Http\Controllers\AuthController;
 /* ********** Routes for auth ********** */
 /* Get redirected to register page */
 
-Route::get('/signUp', [AuthController::class, 'showSignUp'])->name('signUp.form')->middleware('guest')->middleware('guest');
+Route::get('/signUp', [AuthController::class, 'showSignUp'])->name('registration.create')->middleware('guest')->middleware('guest');
 
 /* Post method to register user after user has typed info in */
-Route::post('/signUp', [AuthController::class, 'signUp'])->name('signUp.store');
+Route::post('/signUp', [AuthController::class, 'signUp'])->name('registration.store');
 
 /* Get directed to login form */
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login.form')->middleware('guest');
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login')->middleware('guest');
 
 /* Method to post log in info and then redirected to main index page as authenticated user */
-Route::post('/login', [AuthController::class, 'logIn'])->name('login.post')->middleware('guest');
+Route::post('/login', [AuthController::class, 'logIn'])->name('login.store')->middleware('guest');
 
 /* Method to log out the user */
-Route::post('/logout', [AuthController::class, 'logOut'])->name('logOut')->middleware('auth')->middleware('auth');
+Route::post('/logout', [AuthController::class, 'logOut'])->name('login.destroy')->middleware('auth')->middleware('auth');
 
 
 /* ********** Routes for EventController ********** */

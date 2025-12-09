@@ -21,18 +21,18 @@
 
           <!-- Guest can only see this -->
           @guest
-          <li><a class="borderLink" href="{{route('signUp.form')}}">Sign Up</a></li>
-          <li><a class="borderLink" href="{{route('login.form')}}">Log In</a></li>
+          <li><a class="borderLink" href="{{route('registration.create')}}">Sign Up</a></li>
+          <li><a class="borderLink" href="{{route('login')}}">Log In</a></li>
           @endguest
 
           <!-- Only authenticated user can see this / after loggin in -->
           @auth
-          <li><a id="create" dusk="to-create" href="{{route('event.create')}}">CREATE</a></li>
+          <li><a id="create" dusk="resource-registration href=" {{route('event.create')}}">CREATE</a></li>
           <li><span id="username">Hello, {{ auth()->user()->name }}</span></li>
           <li>
-            <form method="POST" action="{{ route('logOut') }}">
+            <form method="POST" action="{{ route('login.destroy') }}">
               @csrf
-              <button id="logOut-Btn" type="submit">Log Out</button>
+              <button id="logOut-Btn" dusk="logout" type="submit">Log Out</button>
             </form>
           </li>
 

@@ -15,13 +15,13 @@
     @endforeach
     @endif
     <div class="auth-container">
-        <form method="POST" action="{{ route('login.post') }}" class="auth-card">
+        <form method="POST" action="{{ route('login.store') }}" class="auth-card">
             @csrf
             <h2>Login</h2>
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
-            <p>Don’t have an account? <a href="{{ route('signUp.form') }}">Register</a></p>
+            <p>Don’t have an account? <a href="{{ route('registration.create') }}">Register</a></p>
 
 
 
