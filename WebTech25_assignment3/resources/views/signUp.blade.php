@@ -19,7 +19,7 @@
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Register</button>
 
-            <p>Already have an account? <a href="{{ route('login.form') }}">Login</a></p>
+            <p>Already have an account? <a href="{{ route('login') }}">Login</a></p>
         </form>
     </div>
 </body>
