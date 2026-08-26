@@ -31,7 +31,7 @@ class AuthController extends Controller
         ]);
 
         /* Redirect the user to log in page so they can log in with their new account */
-        return redirect()->route('login.post');
+        return redirect()->route('login');
     }
 
     public function showLogin()

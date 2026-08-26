@@ -7,7 +7,7 @@ use App\Http\Controllers\AuthController;
 /* ********** Routes for auth ********** */
 /* Get redirected to register page */
 
-Route::get('/signUp', [AuthController::class, 'showSignUp'])->name('registration.create')->middleware('guest')->middleware('guest');
+Route::get('/signUp', [AuthController::class, 'showSignUp'])->name('registration.create')->middleware('guest');
 
 /* Post method to register user after user has typed info in */
 Route::post('/signUp', [AuthController::class, 'signUp'])->name('registration.store');
@@ -19,7 +19,7 @@ Route::get('/login', [AuthController::class, 'showLogin'])->name('login')->middl
 Route::post('/login', [AuthController::class, 'logIn'])->name('login.store')->middleware('guest');
 
 /* Method to log out the user */
-Route::post('/logout', [AuthController::class, 'logOut'])->name('login.destroy')->middleware('auth')->middleware('auth');
+Route::post('/logout', [AuthController::class, 'logOut'])->name('login.destroy')->middleware('auth');
 
 
 /* ********** Routes for EventController ********** */

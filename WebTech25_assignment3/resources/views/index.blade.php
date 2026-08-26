@@ -27,7 +27,9 @@
 
           <!-- Only authenticated user can see this / after loggin in -->
           @auth
-          <li><a id="create" dusk="resource-registration href=" {{route('event.create')}}">CREATE</a></li>
+          <li><a id="create" dusk="resource-registration" href="{{ route('event.create') }}">
+              CREATE
+            </a></li>
           <li><span id="username">Hello, {{ auth()->user()->name }}</span></li>
           <li>
             <form method="POST" action="{{ route('login.destroy') }}">
